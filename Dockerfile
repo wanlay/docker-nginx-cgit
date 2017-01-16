@@ -1,13 +1,24 @@
-FROM emarcs/debian-minit:jessie
+FROM debian:testing
 
-MAINTAINER Marco Pompili "docker@emarcs.org"
+ENV DEBIAN_FRONTEND noninteractive
+
+MAINTAINER Bertrand Roussel "broussel@sierrawireless.com"
 
 RUN apt-get -qq update && \
-    apt-get -qy install gettext-base \
-                        fcgiwrap git cgit highlight \
+    apt-get upgrade -qy && \
+    apt-get -qy install apt-utils gettext-base \
+                        fcgiwrap git cgit highlight perl \
                         ca-certificates nginx gettext-base \
                         markdown python-docutils groff && \
+    echo 'UTC' > /etc/timezone && \
+    dpkg-reconfigure tzdata && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Add Tini
+ENV TINI_VERSION v0.13.2
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
+RUN chmod +x /tini
+ENTRYPOINT ["/tini", "--"]
 
 RUN useradd nginx
 
@@ -31,7 +42,8 @@ COPY default.conf /etc/nginx/sites-available/default
 COPY 404.html /usr/share/nginx/html/
 COPY 401.html /usr/share/nginx/html/
 
-COPY startup /etc/minit/
+COPY startup /
+CMD ["/startup"]
 
 ENV CGIT_TITLE "My cgit interface"
 ENV CGIT_DESC "Super fast interface to my git repositories"
