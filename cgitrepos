@@ -1,0 +1,15 @@
+#
+# List of repositories.
+# This list could be kept in a different file (e.g. '/etc/cgitrepos')
+# and included like this:
+#   include=/etc/cgitrepos
+#
+
+repo.url=MyRepo
+repo.path=/srv/git/MyRepo.git
+repo.desc=This is my git repository
+
+# For a non-bare repository
+repo.url=MyOtherRepo
+repo.path=/srv/git/MyOtherRepo/.git
+repo.desc=That's my other git repository
