@@ -49,6 +49,9 @@ logo=/cgit-css/cgit.png
 cache-root=/var/cache/cgit
 cache-size=1000
 
+# Removes .git suffix for the url and name
+remove-suffix=1
+
 enable-index-links=1
 enable-index-owner=0
 enable-remote-branches=1
@@ -62,5 +65,8 @@ robots=noindex, nofollow
 virtual-root=$CGIT_VROOT
 
 section-from-path=$CGIT_SECTION_FROM_STARTPATH
+
+# Specify some default clone urls using macro expansion
+clone-url=$CGIT_CLONE_URL
 
 scan-path=/srv/git/
