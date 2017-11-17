@@ -69,4 +69,12 @@ section-from-path=$CGIT_SECTION_FROM_STARTPATH
 # Specify some default clone urls using macro expansion
 clone-url=$CGIT_CLONE_URL
 
-scan-path=/srv/git/
+##
+## List of repositories.
+## PS: Any repositories listed when section is unset will not be
+##     displayed under a section heading
+## PPS: This list could be kept in a different file (e.g. '/etc/cgitrepos')
+##      and included like this:
+##        include=/etc/cgitrepos
+##
+include=/etc/cgitrepos
