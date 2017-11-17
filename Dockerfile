@@ -34,6 +34,7 @@ VOLUME ["/srv/git"]
 VOLUME ["/var/cache/cgit"]
 
 COPY cgitrc.template /etc/
+COPY cgitrepos /etc/
 
 COPY syntax-highlighting.sh /usr/lib/cgit/filters/
 
