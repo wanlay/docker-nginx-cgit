@@ -67,7 +67,7 @@ virtual-root=$CGIT_VROOT
 section-from-path=$CGIT_SECTION_FROM_STARTPATH
 
 # Specify some default clone urls using macro expansion
-clone-url=$CGIT_CLONE_URL
+clone-url=$CGIT_CLONE_URL/$CGIT_REPO_URL
 
 ##
 ## List of repositories.
